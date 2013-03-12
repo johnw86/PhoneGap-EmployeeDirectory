@@ -9,7 +9,8 @@ var app = {
     },
 
     registerEvents: function () {
-        var self = this;
+        $(window).on('hashchange', $.proxy(this.route, this));
+
         // Check of browser supports touch events...
         if (document.documentElement.hasOwnProperty('ontouchstart')) {
             // ... if yes: register touch event listener to change the "selected" state of the item
@@ -28,14 +29,32 @@ var app = {
                 $(event.target).removeClass('tappable-active');
             });
         }
-
-        $(window).on('hashchange', $.proxy(this.route, this));
     },
 
-    slidePage: function (page) {
+    route: function () {
+        var self = this;
+        var hash = window.location.hash;
+        if (!hash) {
+            if (this.homePage) {
+                this.slidePage(this.homePage);
+            } else {
+                this.homePage = new HomeView(this.store).render();
+                this.slidePage(this.homePage);
+            }
+            return;
+        }
+        var match = hash.match(this.detailsURL);
+        if (match) {
+            this.store.findById(Number(match[1]), function (employee) {
+                self.slidePage(new EmployeeView(employee).render());
+            });
+        }
+    },
+
+    slidePage: function(page) {
 
         var currentPageDest,
-        self = this;
+            self = this;
 
         // If there is no current page (app just started) -> No transition: Position new page in the view port
         if (!this.currentPage) {
@@ -61,7 +80,7 @@ var app = {
         $('body').append(page.el);
 
         // Wait until the new page has been added to the DOM...
-        setTimeout(function () {
+        setTimeout(function() {
             // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
             $(self.currentPage.el).attr('class', 'page transition ' + currentPageDest);
             // Slide in the new page
@@ -71,33 +90,12 @@ var app = {
 
     },
 
-    route: function () {
-        var self = this;
-        var hash = window.location.hash;
-        if (!hash) {
-            if (this.homePage) {
-                this.slidePage(this.homePage);
-            } else {
-                this.homePage = new HomeView(this.store).render();
-                this.slidePage(this.homePage);
-            }
-            return;
-        }
-        var match = hash.match(this.detailsURL);
-        if (match) {
-            this.store.findById(Number(match[1]), function (employee) {
-                self.slidePage(new EmployeeView(employee).render());
-            });
-        }
-    },
-
     initialize: function () {
         var self = this;
         this.registerEvents();
         this.detailsURL = /^#employees\/(\d{1,})/;
 
         this.store = new WebSqlStore(function () {
-            $('body').html(new HomeView(self.store).render().el);
             self.route();
         });
 
