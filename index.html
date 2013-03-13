@@ -32,9 +32,38 @@
     <li><a href="sms:{{cellPhone}}">SMS<br/>{{cellPhone}}</a></li>
     <li><a href="#" class="add-location-btn">Add Location</a></li>
     <li><a href="#" class="add-contact-btn">Add to Contacts</a></li>
-    <li><a href="#" class="change-pic-btn">Change Picture</a></li>
+    <li><a href="#employees/edit/{{this.id}}" class="edit-btn">Edit Contact</a></li>
     </ul>
     </div>
+</script>
+
+<script id="edit-tpl" type="text/x-handlebars-template">
+    <div class='header'><a href='#employees/{{this.id}}' class="button header-button header-button-left">Back</a><h1>Edit Contact</h1></div>
+    
+    <form id="edit-form">
+        <fieldset>
+            <legend>Edit</legend>
+            <ol>
+                <li>
+                    <label for="firstName">First Name</label>
+                    <input type="text" name="firstName" id="firstName" value="{{this.firstName}}" />
+                </li>
+                <li>
+                    <label for="lastName">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" value="{{this.lastName}}" />
+                </li>
+                <li>
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" value="{{this.title}}" />
+                </li>
+                <li>
+                    <input type="submit" value="Update"/>
+                </li>
+            </ol>
+        </fieldset>
+        <input type="hidden" name="id" id="id" value="{{this.id}}" />
+    </form>
+
 </script>
 
 <script src="phonegap.js"></script>
@@ -44,6 +73,7 @@
 
 <script src="js/HomeView.js"></script>
 <script src="js/EmployeeView.js"></script>
+<script src="js/EditView.js"></script>
 
 <script src="js/main.js"></script>
 </body>

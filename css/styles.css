@@ -221,3 +221,35 @@ li>a.tappable-active {
     -webkit-transition-duration: .375s;
     -o-transition-duration: .375s;
 }
+
+fieldset {
+    border: 0;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+legend {
+    margin: 10px 5px;
+    font-weight: bold;
+}
+
+form ol {
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+form li {
+    padding: 0 5px;
+}
+
+form label {
+    width: 150px;
+    display: block; 
+}
+
+form input[type="text"] {
+    width: 200px;
+}
+

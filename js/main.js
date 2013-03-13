@@ -43,15 +43,23 @@ var app = {
             }
             return;
         }
-        var match = hash.match(this.detailsURL);
-        if (match) {
-            this.store.findById(Number(match[1]), function (employee) {
+        var detalsMatch = hash.match(this.detailsURL);
+        if (detalsMatch) {
+            this.store.findById(Number(detalsMatch[1]), function (employee) {
                 self.slidePage(new EmployeeView(employee).render());
+            });
+        }
+
+        
+        var editMatch = hash.match(this.editURL);
+        if (editMatch) {
+            this.store.findById(Number(editMatch[1]), function (employee) {
+                self.slidePage(new EditView(employee).render());
             });
         }
     },
 
-    slidePage: function(page) {
+    slidePage: function (page) {
 
         var currentPageDest,
             self = this;
@@ -80,7 +88,7 @@ var app = {
         $('body').append(page.el);
 
         // Wait until the new page has been added to the DOM...
-        setTimeout(function() {
+        setTimeout(function () {
             // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
             $(self.currentPage.el).attr('class', 'page transition ' + currentPageDest);
             // Slide in the new page
@@ -94,6 +102,7 @@ var app = {
         var self = this;
         this.registerEvents();
         this.detailsURL = /^#employees\/(\d{1,})/;
+        this.editURL = /^#employees\/edit\/(\d{1,})/;
 
         this.store = new WebSqlStore(function () {
             self.route();
