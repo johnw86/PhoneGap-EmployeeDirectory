@@ -125,10 +125,10 @@ var WebSqlStore = function(successCallback, errorCallback) {
             function (tx) {
 
                 var sql = "UPDATE employee " +
-                "SET firstName = ?, lastName = ? " +
+                "SET firstName = ?, lastName = ? , title = ?, city = ?, cellPhone = ?, officePhone = ?, email = ?" +
                 "WHERE id = ?";
 
-                tx.executeSql(sql, [employee.firstName, employee.lastName, employee.id],
+                tx.executeSql(sql, [employee.firstName, employee.lastName, employee.title, employee.city, employee.cellPhone, employee.officePhone, employee.email, employee.id],
                         function () {
                             console.log('UPDATE success');
                             callback();

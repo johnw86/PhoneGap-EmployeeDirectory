@@ -15,9 +15,15 @@
         console.log('Updating record');
 
         var employee = {
+            id: $('#employee-id').val(),
             firstName: $('#firstName').val(),
             lastName: $('#lastName').val(),
-            id: $('#employee-id').val()
+            title: $('#title').val(),
+            city: $('#city').val(),
+            cellPhone: $('#cellPhone').val(),
+            officePhone: $('#officePhone').val(),
+            email: $('#email').val()
+
         };
 
         store.updateEmployee(employee, function () {
