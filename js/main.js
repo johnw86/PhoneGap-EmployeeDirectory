@@ -54,7 +54,7 @@ var app = {
         var editMatch = hash.match(this.editURL);
         if (editMatch) {
             this.store.findById(Number(editMatch[1]), function (employee) {
-                self.slidePage(new EditView(employee).render());
+                self.slidePage(new EditView(employee, app.store).render());
             });
         }
     },

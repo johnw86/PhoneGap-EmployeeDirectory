@@ -5,8 +5,8 @@ var WebSqlStore = function(successCallback, errorCallback) {
         this.db = window.openDatabase("EmployeeDB", "1.0", "Employee Demo DB", 200000);
         this.db.transaction(
                 function(tx) {
-                    self.createTable(tx);
-                    self.addSampleData(tx);
+                    //self.createTable(tx);
+                    //self.addSampleData(tx);
                 },
                 function(error) {
                     console.log('Transaction error: ' + error);
@@ -116,6 +116,26 @@ var WebSqlStore = function(successCallback, errorCallback) {
             },
             function(error) {
                 alert("Transaction Error: " + error.message);
+            }
+        );
+    };
+
+    this.updateEmployee = function (employee, callback) {
+        this.db.transaction(
+            function (tx) {
+
+                var sql = "UPDATE employee " +
+                "SET firstName = ?, lastName = ? " +
+                "WHERE id = ?";
+
+                tx.executeSql(sql, [employee.firstName, employee.lastName, employee.id],
+                        function () {
+                            console.log('UPDATE success');
+                            callback();
+                        },
+                        function (tx, error) {
+                            alert('INSERT error: ' + error.message);
+                        });
             }
         );
     };
