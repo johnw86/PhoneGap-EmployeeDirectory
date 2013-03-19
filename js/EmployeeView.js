@@ -59,6 +59,10 @@
             function(imgUrl) {
                 //$('#image').attr('src', "data:image/jpeg;base64," + imageData);
                 $('#image').attr('src', imgUrl);
+
+                store.updateEmployeePhoto(employee.id, imgUrl, function () {
+                    alert("Photo Updated");
+                });
             },
             function() {
                 alert('Error taking picture');
