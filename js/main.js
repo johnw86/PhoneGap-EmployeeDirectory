@@ -46,7 +46,7 @@ var app = {
         var detalsMatch = hash.match(this.detailsURL);
         if (detalsMatch) {
             this.store.findById(Number(detalsMatch[1]), function (employee) {
-                self.slidePage(new EmployeeView(employee).render());
+                self.slidePage(new EmployeeView(employee, app.store).render());
             });
         }
 

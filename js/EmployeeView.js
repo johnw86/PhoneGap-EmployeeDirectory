@@ -1,4 +1,4 @@
-﻿var EmployeeView = function(employee) {
+﻿var EmployeeView = function(employee, store) {
 
     this.initialize = function() {
         this.el = $('<div/>');
