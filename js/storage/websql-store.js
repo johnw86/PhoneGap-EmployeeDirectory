@@ -6,7 +6,7 @@ var WebSqlStore = function(successCallback, errorCallback) {
         this.db.transaction(
                 function (tx) {
 
-                    var setupData = true;//self.doesDataExist(tx);
+                    var setupData = false;//self.doesDataExist(tx);
                     if (!setupData) {
                         self.createTable(tx);
                         self.addSampleData(tx);
