@@ -43,6 +43,9 @@
     };
 
     this.changePicture = function (event) {
+
+        var employeeId = $(this).data('employee-id');
+
         event.preventDefault();
         console.log('changePicture');
         if (!navigator.camera) {
@@ -59,8 +62,6 @@
             function(imgUrl) {
                 //$('#image').attr('src', "data:image/jpeg;base64," + imageData);
                 $('#image').attr('src', imgUrl);
-
-                var employeeId = $(this).data('employee-id');
 
                 store.updateEmployeePhoto(employeeId, imgUrl, function () {
                     alert("Photo Updated");
