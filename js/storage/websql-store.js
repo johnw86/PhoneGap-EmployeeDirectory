@@ -174,12 +174,12 @@ var WebSqlStore = function(successCallback, errorCallback) {
             function (tx) {
 
                 var sql = "UPDATE employee " +
-                "SET photo = ?" +
+                "SET photo = ? " +
                 "WHERE id = ?";
 
                 tx.executeSql(sql, [photoUrl, id],
                         function () {
-                            console.log('UPDATE success');
+                            console.log('UPDATE success photo url = ' + photoUrl + ' id = ' + id);
                             callback();
                         },
                         function (tx, error) {
