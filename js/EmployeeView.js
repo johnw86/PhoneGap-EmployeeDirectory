@@ -60,7 +60,9 @@
                 //$('#image').attr('src', "data:image/jpeg;base64," + imageData);
                 $('#image').attr('src', imgUrl);
 
-                store.updateEmployeePhoto(employee.id, imgUrl, function () {
+                var employeeId = $('#image').data('employee-id');
+
+                store.updateEmployeePhoto(employeeId, imgUrl, function () {
                     alert("Photo Updated");
                 });
             },
