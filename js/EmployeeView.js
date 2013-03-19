@@ -42,7 +42,7 @@
         return false;
     };
 
-    this.changePicture = function(event) {
+    this.changePicture = function (event) {
         event.preventDefault();
         console.log('changePicture');
         if (!navigator.camera) {
@@ -60,7 +60,7 @@
                 //$('#image').attr('src', "data:image/jpeg;base64," + imageData);
                 $('#image').attr('src', imgUrl);
 
-                var employeeId = $('#image').data('employee-id');
+                var employeeId = $(this).data('employee-id');
 
                 store.updateEmployeePhoto(employeeId, imgUrl, function () {
                     alert("Photo Updated");
