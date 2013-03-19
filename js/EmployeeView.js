@@ -50,14 +50,15 @@
             return;
         }
         var options =   {   quality: 50,
-                            destinationType: Camera.DestinationType.DATA_URL,
+                            destinationType: Camera.DestinationType.FILE_URI,//Camera.DestinationType.DATA_URL,
                             sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
                             encodingType: 0     // 0=JPG 1=PNG
                         };
 
         navigator.camera.getPicture(
-            function(imageData) {
-                $('#image').attr('src', "data:image/jpeg;base64," + imageData);
+            function(imgUrl) {
+                //$('#image').attr('src', "data:image/jpeg;base64," + imageData);
+                $('#image').attr('src', imgUrl);
             },
             function() {
                 alert('Error taking picture');
