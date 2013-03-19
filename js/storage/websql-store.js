@@ -37,8 +37,11 @@ var WebSqlStore = function(successCallback, errorCallback) {
             console.log('Table length check success');
         },
         function (tx, error) {
-            alert('Error checking table rows: ' + error.message);
+            //alert('Error checking table rows: ' + error.message);
+            console.log('Error checking table rows: ' + error.message);
         });
+
+        return doesExist;
     }
 
     this.createTable = function(tx) {
