@@ -20,7 +20,10 @@
 </script>
 
 <script id="employee-tpl" type="text/x-handlebars-template">
-    <div class='header'><a href='#' class="button header-button header-button-left">Back</a><h1>Details</h1></div>
+    <div class='header'>
+        <a href='#' class="button header-button header-button-left">Back</a>
+        <h1>Details</h1>
+    </div>
     <div class='details'>
     <img id='image' src='{{photo}}' style="float:left;margin:10px;" width="100" height="100"/>
     <h1>{{firstName}} {{lastName}}</h1>
@@ -35,6 +38,9 @@
     <li><a href="#" class="change-pic-btn" data-employee-id="{{this.id}}">Update Photo</a></li>
     <li><a href="#employees/edit/{{this.id}}" class="edit-btn">Edit Contact</a></li>
     </ul>
+
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/lVjCMXQGS_w" frameborder="0" allowfullscreen></iframe>
     </div>
 </script>
 
