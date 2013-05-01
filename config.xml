@@ -7,8 +7,6 @@
 
   <name>Employee Directory</name>
 
-    <preference name="orientation" value="portrait" />
-
   <description>
     A simple employee directory application
   </description>
